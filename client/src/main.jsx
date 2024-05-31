@@ -11,7 +11,7 @@ import Share from './pages/Share.jsx'
 
 const Layout = () => {
   return (
-    <div className='bg-blue-200 p-4'>
+    <div >
       <Navbar/>
       <Outlet />
     </div>
