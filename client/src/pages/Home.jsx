@@ -6,7 +6,8 @@ function Home() {
         window.location.href = '/about'
     }
   return (
-    <div>Home</div>
+    <div>Home
+    </div>
   )
 }
 
