@@ -1,28 +1,38 @@
 
-import { Button } from "@/components/ui/button"
+import { Link } from "react-router-dom"
 
-export default function Moviecard() {
+export default function Moviecard({key,movie,genre}) {
+
+    console.log(movie.genre_ids)
+    var genersString = ""
+    for(let i = 0;i< movie.genre_ids.length;i++){
+        genersString += genre[movie.genre_ids[i]] + " "
+    }
+    genersString = genersString.slice(0, -1)
   return (
-    <div className="relative group rounded-lg overflow-hidden">
-    <p href="#" className="absolute inset-0 z-10" prefetch={false}>
+    <Link to="/share/id">
+    <div className="relative group rounded-lg overflow-hidden hover:cursor-pointer">
+    <p href="#" className="absolute inset-0 z-10">
       <span className="sr-only">View Movie</span>
     </p>
     <img
-      src="https://image.tmdb.org/t/p/w780/xAAYm7bUC5LnAj2Hs2hePOMHh2z.jpg"
+      src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
       alt="Movie Poster"
       width={300}
-      height={450}
+      height={400}
       className="object-cover w-full aspect-[2/3]"
     />
-    <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-      <h3 className="text-white text-lg font-semibold">Movie Title</h3>
-      <p className="text-gray-300 text-sm line-clamp-2">This is a brief description of the movie.</p>
-      <div className="flex items-center gap-2 mt-2">
-        <StarIcon className="w-5 h-5 fill-yellow-500" />
-        <span className="text-white text-sm font-medium">4.5</span>
+    <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+      <h3 className="text-white text-lg font-semibold text-center">{movie.title}</h3>
+      <p className="text-gray-300 text-sm line-clamp-2 text-center ">{movie.overview}</p>
+      <p className="text-gray-300 line-clamp-2 text-center text-xl">{genersString}</p>
+      <div className="flex items-center gap-2 mt-2 justify-center ">
+        <StarIcon className="w-5 h-5 fill-yellow-500 text-center" />
+        <span className="text-white text-sm font-medium text-center">{movie.vote_average.toFixed(1)}</span>
       </div>
-    </div>
+    </div> 
   </div>
+  </Link>
   )
 }
 
