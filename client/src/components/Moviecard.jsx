@@ -10,7 +10,7 @@ export default function Moviecard({key,movie,genre}) {
     }
     genersString = genersString.slice(0, -1)
   return (
-    <Link to="/share/id">
+    <Link to={`/movie/${movie.id}`}>
     <div className="relative group rounded-lg overflow-hidden hover:cursor-pointer">
     <p href="#" className="absolute inset-0 z-10">
       <span className="sr-only">View Movie</span>

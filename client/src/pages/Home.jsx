@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Moviecard from '@/components/Moviecard';
+import Lottie from 'lottie-react';
+import movieLoader from './../assets/movieLoader.json';
 import { fetchGenre, fetchMovies } from '@/Api/apicalls';
+import { useSearch } from '@/Contextprovider/SearchProvider';
 
 function Home() {
-  const [movies, setMovies] = useState([]);
+   const {movies,setMovies} = useSearch()
   const [loading, setLoading] = useState(true);
   const [genre,setGenre] = useState({})
-
-  useEffect(() => { 
+ 
+  useEffect(() => {
     async function getMovies() {
       try {
         const data = await fetchMovies();
@@ -29,7 +32,7 @@ function Home() {
   }, []);
 
   if (loading) {
-    return <div>Loading</div>;
+    return "Loading"
   }
 
   return (

@@ -1,16 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 // import Link from "next/link"
 import { Input } from "@/components/ui/input"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { useAuth } from './../Contextprovider/AuthProvider'
+
 import Logout from '@/components/Logout'
+import { useSearch } from '@/Contextprovider/SearchProvider'
+import { searchMovie } from '@/Api/apicalls'
+
 
 
 function Navbar() {
-
-  const {logout,user} = useAuth
+   const {movies,setMovies} = useSearch()
+   const [search,setSearch] = useState("")
+   const handleSearch = async () =>{
+    const data  = await searchMovie(search)
+    console.log(data)
+    setMovies( e => data.results)
+   }
+   const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent the default form submission
+      handleSearch();
+    }
+  };
   return (
     <div>
       <header className="bg-black text-[#FF204E] py-4 px-6 flex items-center justify-between">
@@ -30,9 +44,12 @@ function Navbar() {
         <div className="flex items-center gap-6">
           <div className="relative">
             <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-            <Input
+            <input
               type="text"
               placeholder="Search movies..."
+              value={search}
+              onChange={(e)=>setSearch(e.target.value)}
+              onKeyDown={ e => handleKeyDown(e)}
               className="bg-gray-800 rounded-[12px] pl-10 pr-4 py-2 text-sm border-black focus:outline-none focus:text-white"
             />
           </div>

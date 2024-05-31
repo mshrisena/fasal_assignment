@@ -6,6 +6,7 @@ const AuthContext = createContext();
 // Create a provider component
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [movies, setMovies] = useState([]);
 
   const login = (userData) => {
     console.log("login")
@@ -13,12 +14,12 @@ export function AuthProvider({ children }) {
   };
 
   const logout = () => {
-    console.log("login")
+    console.log("logout")
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout,movies,setMovies}}>
       {children}
     </AuthContext.Provider>
   );
