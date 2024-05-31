@@ -3,36 +3,26 @@ import { Button } from "@/components/ui/button"
 
 export default function Moviecard() {
   return (
-    <div className="relative group w-full max-w-sm rounded-lg overflow-hidden shadow-lg bg-gray-900 text-white">
-      <img
-        src="https://image.tmdb.org/t/p/w780/xAAYm7bUC5LnAj2Hs2hePOMHh2z.jpg"
-        alt="Movie Poster"
-        width={400}
-        height={600}
-        className="w-full aspect-[2/3] object-cover"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent group-hover:from-black/70 transition-colors duration-300" />
-      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent group-hover:from-black/80 transition-colors duration-300">
-        <h3 className="text-xl font-bold mb-1">Interstellar</h3>
-        <div className="flex items-center gap-2 text-sm text-gray-400">
-          <span>2014</span>
-          <span>•</span>
-          <span>Sci-Fi, Drama</span>
-        </div>
-        <p className="mt-2 line-clamp-3 text-gray-300">
-          A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.
-        </p>
-        <div className="mt-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <StarIcon className="w-5 h-5 fill-primary" />
-            <span className="font-medium">8.6</span>
-          </div>
-          <Button variant="outline" size="sm" className="bg-red-600 hover:bg-red-500 text-white">
-            Watch Trailer
-          </Button>
-        </div>
+    <div className="relative group rounded-lg overflow-hidden">
+    <p href="#" className="absolute inset-0 z-10" prefetch={false}>
+      <span className="sr-only">View Movie</span>
+    </p>
+    <img
+      src="https://image.tmdb.org/t/p/w780/xAAYm7bUC5LnAj2Hs2hePOMHh2z.jpg"
+      alt="Movie Poster"
+      width={300}
+      height={450}
+      className="object-cover w-full aspect-[2/3]"
+    />
+    <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+      <h3 className="text-white text-lg font-semibold">Movie Title</h3>
+      <p className="text-gray-300 text-sm line-clamp-2">This is a brief description of the movie.</p>
+      <div className="flex items-center gap-2 mt-2">
+        <StarIcon className="w-5 h-5 fill-yellow-500" />
+        <span className="text-white text-sm font-medium">4.5</span>
       </div>
     </div>
+  </div>
   )
 }
 
