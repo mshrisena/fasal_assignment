@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Moviecard from '@/components/Moviecard';
-import Lottie from 'lottie-react';
-import movieLoader from './../assets/movieLoader.json';
 import { fetchGenre, fetchMovies } from '@/Api/apicalls';
 
 function Home() {
@@ -31,7 +29,7 @@ function Home() {
   }, []);
 
   if (loading) {
-    return <Lottie animationData={movieLoader} />;
+    return <div>Loading</div>;
   }
 
   return (
