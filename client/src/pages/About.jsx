@@ -1,11 +1,13 @@
+import Moviecard from '@/components/Moviecard'
 import { Button } from '@/components/ui/button'
 import React from 'react'
 
 
 function About() {
   return (
+    
     <div className="flex flex-col min-h-screen">
-     
+     <Moviecard/>
       <main className="flex-1 bg-gray-100 py-8 px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <div className="relative group">
