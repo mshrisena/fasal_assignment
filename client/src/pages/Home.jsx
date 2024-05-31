@@ -7,7 +7,7 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [genre,setGenre] = useState({})
 
-  useEffect(() => {
+  useEffect(() => { 
     async function getMovies() {
       try {
         const data = await fetchMovies();
