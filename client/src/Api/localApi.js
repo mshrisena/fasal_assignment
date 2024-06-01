@@ -1,7 +1,7 @@
 import axios from "axios"
 import { fetchMovieDetails } from "./apicalls"
 
-export const  baseurl = "http://localhost:3001/"
+export const  baseurl = "https://fasal-assignment-cdr6.onrender.com/"
 
 
 export async function signin(username,password){
