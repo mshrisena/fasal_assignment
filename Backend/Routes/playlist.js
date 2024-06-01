@@ -14,10 +14,10 @@ const router = express.Router();
 
 router.post('/create',authenticateToken, createPlaylist);
 router.get('/',authenticateToken, getPlaylists);
-router.put('/update/:id',authenticateToken, updatePlaylist);
-router.delete('/delete/:id', authenticateToken,deletePlaylist);
+router.put('/update/:id', updatePlaylist);
+router.delete('/delete/:id',deletePlaylist);
 router.get("/user",authenticateToken,getPlayListUser)
 router.get("/get/:id",getPlayListId)
-router.get("/changeVisibility",authenticateToken,changeVisibility)
+router.get("/changeVisibility",changeVisibility)
 
 module.exports = router;
