@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.post('/create', authenticateToken, createMovie);
 router.get('/', authenticateToken, getMovies);
-router.get('/playlist/:playlistId', authenticateToken, getMoviesByPlaylistId);
+router.get('/playlist/:playlistId', getMoviesByPlaylistId);
 router.put('/update/:id', authenticateToken, updateMovie);
 router.delete('/delete/:id', authenticateToken, deleteMovie);
 router.get("/playlistWithoutMovie/:id",authenticateToken,getplayListWithoutMovie)
