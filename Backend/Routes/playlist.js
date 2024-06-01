@@ -17,7 +17,7 @@ router.get('/',authenticateToken, getPlaylists);
 router.put('/update/:id',authenticateToken, updatePlaylist);
 router.delete('/delete/:id', authenticateToken,deletePlaylist);
 router.get("/user",authenticateToken,getPlayListUser)
-router.get("/get/:id",authenticateToken,getPlayListId)
+router.get("/get/:id",getPlayListId)
 router.get("/changeVisibility",authenticateToken,changeVisibility)
 
 module.exports = router;
