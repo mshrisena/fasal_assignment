@@ -15,7 +15,7 @@ app.use(cors(
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.get('/', (req, res) => {
-    res.send("Adya Assesment Backend"); 
+    res.send("Fasal Assesment Backend"); 
 });
 app.use('/user', require('./Routes/user')); 
 // app.use('/house',require('./Routes/house'));
