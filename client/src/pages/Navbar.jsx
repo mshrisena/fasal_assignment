@@ -42,7 +42,7 @@ function Navbar() {
     <div>
       <header className="bg-black text-[#FF204E] py-4 px-6 flex items-center justify-between">
         <nav className="flex items-center gap-6">
-          <span className='text-3xl'>MovieHub</span>
+          <span className='text-3xl'>CinemaCanvas</span>
           <Link to="/home">
             <p className="text-lg font-medium hover:text-gray-400">
               Home
