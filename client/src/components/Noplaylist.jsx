@@ -4,7 +4,7 @@ import CreatePlaylist from "./CreatePlaylist"
 import { useState } from "react"
 
 export default function Noplaylist() {
-    const [open, setopen] = useState(true)
+    const [open, setopen] = useState(false)
  
   return (
     <div className="flex flex-col items-center justify-center h-full">
