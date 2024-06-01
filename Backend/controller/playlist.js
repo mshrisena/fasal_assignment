@@ -100,11 +100,26 @@ const getPlayListId = async(req,res)=>{
         res.status(500).json({ message: "An error occurred", error: error.message });
     }
 }
+const changeVisibility = async(req,res)=>{
+    try {
+        const {isPublic,id} = req.query;
+        const playlist = await Playlist.findByPk(id);
+        if(!playlist)
+            return res.status(404).json({"error":"cannot find playlist"})
+        playlist.isPublic = isPublic
+        await playlist.save();
+
+        res.status(200).json({ message: "Playlist updated successfully", data:playlist });
+    } catch (error) {
+        
+    }
+}
 module.exports = {
     createPlaylist,
     getPlaylists,
     updatePlaylist,
     deletePlaylist,
     getPlayListUser,
-    getPlayListId
+    getPlayListId,
+    changeVisibility
 };

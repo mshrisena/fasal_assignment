@@ -1,10 +1,25 @@
+import React, { useState } from "react";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { addMovieToPlaylist } from "@/Api/localApi";
 
-import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Label } from "@/components/ui/label"
+export default function AddPlayList (props) {
+  const [playlist, setPlaylist] = useState(props.data);
 
-export default function AddPlayList () {
+  const handleAdd = async (id, playlistId) => {
+    const result = await addMovieToPlaylist(playlistId, props.movieid);
+    console.log(result,"xcgvh")
+    if (result.movie) { 
+      const updatedPlaylist = playlist.filter((_, idx) => idx !== id);
+      setPlaylist(updatedPlaylist);
+      props.handleChange(updatedPlaylist); 
+    } else {
+      console.log("Failed to add movie to playlist");
+    }
+  };
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -19,47 +34,20 @@ export default function AddPlayList () {
             <XIcon className="h-5 w-5" />
           </div>
         </div>
-        <div className="space-y-2 p-4">
-          <div className="flex items-center space-x-2">
-            <Checkbox id="playlist-1" checked={true} />
-            <Label htmlFor="playlist-1" className="font-medium">
-              Workout Jams
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox id="playlist-2" />
-            <Label htmlFor="playlist-2" className="font-medium">
-              Chill Vibes
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox id="playlist-3" defaultChecked />
-            <Label htmlFor="playlist-3" className="font-medium">
-              Road Trip Essentials
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox id="playlist-4" />
-            <Label htmlFor="playlist-4" className="font-medium">
-              Party Playlist
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox id="playlist-5" />
-            <Label htmlFor="playlist-5" className="font-medium">
-              Indie Gems
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox id="playlist-6" defaultChecked />
-            <Label htmlFor="playlist-6" className="font-medium">
-              Retro Rewind
-            </Label>
-          </div>
+        <div className="grid grid-flow-row space-y-2">
+          {playlist.map((e, idx) => (
+            <div key={e.id}>
+              <Checkbox id={`playlist-${e.id}`} className="w-[20px] h-[20px] mr-[10px]" onCheckedChange={() => handleAdd(idx, e.id)} />
+              <Label htmlFor={`playlist-${e.id}`} className="font-bold text-center">
+                {e.name}
+              </Label>
+            </div>
+          ))}
         </div>
+        <p className="font-bold pt-[10px]">If the playlist is not listed, then the movie is available in the playlist</p>
       </PopoverContent>
     </Popover>
-  )
+  );
 }
 
 function MusicIcon(props) {
@@ -80,9 +68,8 @@ function MusicIcon(props) {
       <circle cx="6" cy="18" r="3" />
       <circle cx="18" cy="16" r="3" />
     </svg>
-  )
+  );
 }
-
 
 function XIcon(props) {
   return (
@@ -98,8 +85,8 @@ function XIcon(props) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
+      <path d="M18 6L6 18" />
+      <path d="M6 6l12 12" />
     </svg>
-  )
+  );
 }

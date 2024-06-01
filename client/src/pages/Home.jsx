@@ -7,7 +7,7 @@ import { useSearch } from '@/Contextprovider/SearchProvider';
 
 function Home() {
   if(localStorage.getItem("token") === null){
-    window.location.replace(window.location.href+"Sign-in")
+    window.location.replace("/sign-in")
   }
    const {movies,setMovies} = useSearch()
   const [loading, setLoading] = useState(true);
@@ -35,7 +35,9 @@ function Home() {
   }, []);
 
   if (loading) {
-    return <Lottie animationData={movieLoader} />
+    return <div className='flex w-full h-full items-center justify-center bg-gray-800'>
+    <Lottie animationData={movieLoader} />
+  </div>
   }
 
   return (

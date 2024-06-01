@@ -18,7 +18,7 @@ const authenticateToken = (req, res, next) => {
     if (err) {
       return res.status(401).json({ error: 'Unauthorized: Invalid token' });
     }
-    console.log(decoded.name.id)
+    // console.log(decoded.name.id)
     req.userId = decoded.name.id;
     next();
   });

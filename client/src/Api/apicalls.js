@@ -68,7 +68,8 @@ export async function fetchMovieDetails(id) {
       runtime: details.runtime,
       poster: details.poster_path,
       vote : details.vote_average,
-      vote_count : details.vote_count
+      vote_count : details.vote_count,
+      id:id
     };
 
     // Fetch cast and crew details

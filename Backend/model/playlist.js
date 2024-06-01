@@ -16,6 +16,10 @@ const Playlist = sequelize.define("Playlist", {
     coverImageUrl :{
         type:DataTypes.STRING,
         allowNull:true
+    },
+    isPublic:{
+        type:DataTypes.BOOLEAN,
+        defaultValue:false
     }
  
 }, {

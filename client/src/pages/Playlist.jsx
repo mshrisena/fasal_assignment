@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Lottie from 'lottie-react';
 import movieLoader from './../assets/movieLoader.json';
 import { getUserPlaylist } from '@/Api/localApi';
+import Noplaylist from '@/components/Noplaylist';
 function formatedDate(date ){
   const today = new Date(date);
   const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
@@ -13,6 +14,9 @@ function formatedDate(date ){
   return formattedDate
 }
 function Playlist() {
+  if(localStorage.getItem("token") === null){
+   window.location.replace("/sign-in")
+  }
   const [loading,setLoading] = useState(true)
     const [open,setOpen] = useState(false)
     const [playlist,setPlaylist] = useState([])
@@ -20,6 +24,7 @@ function Playlist() {
       const fetchData = async () => {
         setLoading(true);
         const data = await getUserPlaylist();
+        console.log(data.data,"data")
         setPlaylist(data.data);
         setLoading(false);
       };
@@ -48,7 +53,7 @@ function Playlist() {
         </p>
       </div>
       {
-        playlist.length == 0? <div>No playlist</div> :
+        playlist.length == 0? <Noplaylist /> :
       
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {

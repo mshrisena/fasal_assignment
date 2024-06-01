@@ -9,6 +9,9 @@ import { fetchMovieDetails } from '@/Api/apicalls';
 import Detail from '@/components/Detail';
 
 export default function Movie() {
+  if(localStorage.getItem("token") === null){
+   window.location.replace("/sign-in")
+  }
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [movie, setMovie] = useState({});

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 // import Link from "next/link"
 import { Input } from "@/components/ui/input"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
@@ -12,7 +12,16 @@ import { searchMovie } from '@/Api/apicalls'
 
 
 function Navbar() {
+  const location = useLocation();
 
+  // Check if the current pathname is '/share'
+  // console.log( location.pathname.includes("share"),"dfsdfsdf")
+  const isSharePage = location.pathname.includes("share")
+
+  // If it's the Share page, don't render the Navbar
+  if (isSharePage) {
+    return null;
+  }
   
    const {movies,setMovies} = useSearch()
    const [search,setSearch] = useState("")
@@ -23,8 +32,9 @@ function Navbar() {
    }
    const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
-      event.preventDefault(); // Prevent the default form submission
+      event.preventDefault();
       handleSearch();
+      // Prevent the default form submission
       
     }
   };

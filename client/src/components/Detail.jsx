@@ -1,13 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import AddPlayList from './AddPlayList';
-
+import Lottie from 'lottie-react';
+import movieLoader from './../assets/movieLoader.json';
+import { fetchPlaylistWithoutMovie } from '@/Api/localApi';
 function Detail(props) {
   console.log(props)
     const { data } = props;
-    const { title, genre, overview, revenue, runtime, poster, cast, director ,vote,vote_count,images} = data;
-
+    const { title, genre, overview, revenue, runtime, poster, cast, director ,vote,vote_count,images,id} = data;
+     const [playlsit,setPlaylist] = useState([])
+     const [loading,setLoading] = useState(true)
+     useEffect(() => {
+      const fetchData = async () => {
+        setLoading(true);
+        const data = await fetchPlaylistWithoutMovie(id)
+        setPlaylist(data.data);
+        // console.log(data.data,"cfhgvjbknl")
+        setLoading(false);
+      };
+  
+      fetchData();
+    }, []);
+    if (loading) {
+      return (
+        <div className='flex w-full h-full items-center justify-center bg-gray-800'>
+          <Lottie animationData={movieLoader} />
+        </div>
+      );
+    }
+  
     return (
         <div>
             <div className="grid md:grid-cols-2 gap-8">
@@ -38,7 +60,7 @@ function Detail(props) {
                     <div>
                         <h2 className="text-xl font-semibold">Director</h2>
                         <div className="flex items-center gap-2 mt-2">
-                            <Avatar className="w-16 h-16 border">
+                            <Avatar className="w-20 h-25 border">
                             <AvatarImage src = {`https://image.tmdb.org/t/p/w500${director.photourl}`} />
                                 {/* <img src={`https://image.tmdb.org/t/p/w500${director.photourl}`} alt={director.name} /> */}
                                 <AvatarFallback>{director.name}</AvatarFallback>
@@ -51,10 +73,10 @@ function Detail(props) {
                         <div className="flex items-center gap-4 mt-2">
                             {cast.slice(0, 5).map((actor, index) => (
                                 <div key={index} className="flex flex-col items-center">
-                                    <Avatar className="w-16 h-16 border">
+                                    <Avatar className="w-20 h-20 border">
                                         {/* <img src={`https://image.tmdb.org/t/p/w500${actor.photourl}`} alt={actor.name} /> */}
                                         <AvatarImage  src={`https://image.tmdb.org/t/p/w500${actor.photourl}`} />
-                                        <AvatarFallback>{actor.name[0]}</AvatarFallback>
+                                        <AvatarFallback className="text-center">{actor.name[0]}</AvatarFallback>
                                     </Avatar>
                                     <div className="text-sm mt-2">{actor.name}</div>
                                 </div>
@@ -62,7 +84,7 @@ function Detail(props) {
                         </div>
                     </div>
                     <div className="flex gap-2">
-                            <AddPlayList/>
+                            <AddPlayList data={playlsit} movieid={id} handleChange= {setPlaylist}/>
                        
                     </div>
                 </div>

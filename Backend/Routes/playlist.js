@@ -6,7 +6,8 @@ const {
     updatePlaylist,
     deletePlaylist,
     getPlayListUser,
-    getPlayListId
+    getPlayListId,
+    changeVisibility
 } = require('../controller/playlist');
 const  authenticateToken = require("../middleware/requireAuth")
 const router = express.Router();
@@ -17,5 +18,6 @@ router.put('/update/:id',authenticateToken, updatePlaylist);
 router.delete('/delete/:id', authenticateToken,deletePlaylist);
 router.get("/user",authenticateToken,getPlayListUser)
 router.get("/get/:id",authenticateToken,getPlayListId)
+router.get("/changeVisibility",authenticateToken,changeVisibility)
 
 module.exports = router;

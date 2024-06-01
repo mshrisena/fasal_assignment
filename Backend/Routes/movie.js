@@ -5,7 +5,7 @@ const {
     getMovies,
     getMoviesByPlaylistId,
     updateMovie,
-    deleteMovie
+    deleteMovie,getplayListWithoutMovie
 } = require('../controller/movie');
 const authenticateToken = require('../middleware/requireAuth');
 
@@ -16,5 +16,6 @@ router.get('/', authenticateToken, getMovies);
 router.get('/playlist/:playlistId', authenticateToken, getMoviesByPlaylistId);
 router.put('/update/:id', authenticateToken, updateMovie);
 router.delete('/delete/:id', authenticateToken, deleteMovie);
+router.get("/playlistWithoutMovie/:id",authenticateToken,getplayListWithoutMovie)
 
 module.exports = router;

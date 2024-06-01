@@ -1,3 +1,4 @@
+const Playlist = require('../model/playlist');
 const User = require('../model/user')
 const jwt = require('jsonwebtoken');
 
@@ -7,14 +8,16 @@ const createToken = (name) => {
 
 const CreateUser = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+            console.log(req.body)
+            const { name, email, password } = req.body;
+    
         const [user, created] = await User.findOrCreate({
             where: { name },
             defaults: { name, email, password: password }
         });
        
         if (created) {
-            return res.status(200).json({message: "success",  user});
+            return res.status(200).json({message: true,  user});
         } else {
             return res.status(200).json({ message: 'User already exists with the same name.' });
         }
@@ -51,9 +54,24 @@ const UserLogin = async (req, res) => {
         res.status(500).send(JSON.stringify({ "message": "No user found" }));
     }
 }
+const getUserName = async (req,res)=>{
+    try {
+        const {id} = req.params;
+        const playlist = await Playlist.findByPk(id)
+        const user = await User.findByPk(playlist.UserId)
+        if(!user){
+            return res.json({"message":false,"data":"user not found"})
+
+        }
+        return res.json({"message":true,data:user.name})
+    } catch (error) {
+         return res.json({message:false})
+    } 
+}
 
 module.exports = {
     UserLogin: UserLogin,
     updateUser: updateUser,
-    CreateUser: CreateUser
+    CreateUser: CreateUser,
+    getUserName
 }
