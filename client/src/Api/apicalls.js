@@ -1,6 +1,4 @@
 import axios from 'axios';
-import res from 'express/lib/response';
-import { generatePath } from 'react-router-dom';
 
 const options = {
     headers: {
