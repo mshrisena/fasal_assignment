@@ -1,0 +1,105 @@
+
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"
+import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Label } from "@/components/ui/label"
+
+export default function AddPlayList () {
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline">
+          Add Playlists
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-[400px] max-h-[500px] overflow-auto">
+        <div className="flex items-center justify-between border-b p-4">
+          <h3 className="text-lg font-medium">Playlists</h3>
+          <div>
+            <XIcon className="h-5 w-5" />
+          </div>
+        </div>
+        <div className="space-y-2 p-4">
+          <div className="flex items-center space-x-2">
+            <Checkbox id="playlist-1" checked={true} />
+            <Label htmlFor="playlist-1" className="font-medium">
+              Workout Jams
+            </Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Checkbox id="playlist-2" />
+            <Label htmlFor="playlist-2" className="font-medium">
+              Chill Vibes
+            </Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Checkbox id="playlist-3" defaultChecked />
+            <Label htmlFor="playlist-3" className="font-medium">
+              Road Trip Essentials
+            </Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Checkbox id="playlist-4" />
+            <Label htmlFor="playlist-4" className="font-medium">
+              Party Playlist
+            </Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Checkbox id="playlist-5" />
+            <Label htmlFor="playlist-5" className="font-medium">
+              Indie Gems
+            </Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Checkbox id="playlist-6" defaultChecked />
+            <Label htmlFor="playlist-6" className="font-medium">
+              Retro Rewind
+            </Label>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
+  )
+}
+
+function MusicIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M9 18V5l12-2v13" />
+      <circle cx="6" cy="18" r="3" />
+      <circle cx="18" cy="16" r="3" />
+    </svg>
+  )
+}
+
+
+function XIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </svg>
+  )
+}

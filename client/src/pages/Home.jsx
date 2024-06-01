@@ -6,6 +6,9 @@ import { fetchGenre, fetchMovies } from '@/Api/apicalls';
 import { useSearch } from '@/Contextprovider/SearchProvider';
 
 function Home() {
+  if(localStorage.getItem("token") === null){
+    window.location.replace(window.location.href+"Sign-in")
+  }
    const {movies,setMovies} = useSearch()
   const [loading, setLoading] = useState(true);
   const [genre,setGenre] = useState({})
@@ -32,7 +35,7 @@ function Home() {
   }, []);
 
   if (loading) {
-    return "Loading"
+    return <Lottie animationData={movieLoader} />
   }
 
   return (

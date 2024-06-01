@@ -12,6 +12,8 @@ import { searchMovie } from '@/Api/apicalls'
 
 
 function Navbar() {
+
+  
    const {movies,setMovies} = useSearch()
    const [search,setSearch] = useState("")
    const handleSearch = async () =>{
@@ -23,6 +25,7 @@ function Navbar() {
     if (event.key === 'Enter') {
       event.preventDefault(); // Prevent the default form submission
       handleSearch();
+      
     }
   };
   return (
@@ -53,7 +56,8 @@ function Navbar() {
               className="bg-gray-800 rounded-[12px] pl-10 pr-4 py-2 text-sm border-black focus:outline-none focus:text-white"
             />
           </div>
-          <DropdownMenu>
+         { localStorage.getItem("username") !== null && <div className='text-white text-xl'> Hello,<span className='text-2xl'>{localStorage.getItem("username")}</span></div>
+         } <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Avatar className="h-9 w-9">
                 <AvatarImage src="https://github.com/shadcn.png" />
@@ -61,9 +65,7 @@ function Navbar() {
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem>My Account</DropdownMenuItem>
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuSeparator />
+           
               <DropdownMenuItem ><Logout/></DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

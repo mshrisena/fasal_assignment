@@ -1,11 +1,15 @@
 import React from 'react'
 
 function Logout() {
-    console.log("logout")
+    const handleLogout = ()=>{
+      localStorage.removeItem("token")
+    localStorage.removeItem("username")
+    window.location.reload()
+    }
   return (
-    <div>
+    <button onClick={handleLogout}>
       Logout
-    </div>
+    </button>
   )
 }
 

@@ -10,6 +10,13 @@ import Share from './pages/Share.jsx'
 import { AuthProvider } from './Contextprovider/AuthProvider.jsx'
 import { SearchProvider } from './Contextprovider/SearchProvider.jsx'
 import Movie from './pages/Movie.jsx'
+import Playlist from './pages/Playlist.jsx'
+import SignIn from './pages/SignIn.jsx'
+import SignUp from './pages/SignUp.jsx'
+import { Toaster } from "@/components/ui/toaster"
+import PlaylistView from './pages/PlaylistView.jsx'
+
+
 
 const Layout = () => {
   return (
@@ -26,9 +33,18 @@ const router = createBrowserRouter(
     path: '/',
     element: <Layout />,
     children: [
+
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path:"/Sign-in",
+        element:<SignIn/>
+      },
+      {
+        path:"/Sign-up",
+        element:<SignUp/>
       },
       {
         path: '/home',
@@ -45,6 +61,13 @@ const router = createBrowserRouter(
       {
         path:'movie/:id',
         element: <Movie />,
+      },{
+        path:"playlist",
+        element:<Playlist/>
+      },
+      {
+        path:"playlist/:id",
+        element:<PlaylistView/>
       }
     ],
   }]
@@ -54,7 +77,9 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProvider>
     <SearchProvider>
+      
   <RouterProvider router={router}/>
+  <Toaster />
   </SearchProvider>
   </AuthProvider>
 

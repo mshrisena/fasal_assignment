@@ -48,6 +48,7 @@ export async function searchMovie(query){
 export async function fetchMovieDetails(id) {
   const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
   const castUrl = `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`;
+  const Imageurl = `https://api.themoviedb.org/3/movie/${id}/images`;
   
 
   try {
@@ -66,6 +67,8 @@ export async function fetchMovieDetails(id) {
       revenue: details.revenue,
       runtime: details.runtime,
       poster: details.poster_path,
+      vote : details.vote_average,
+      vote_count : details.vote_count
     };
 
     // Fetch cast and crew details
@@ -90,7 +93,13 @@ export async function fetchMovieDetails(id) {
 
     result.cast = cast;
     result.director = directorDetails;
-
+    const images = []
+  let  image = await axios.get(Imageurl,options)
+  image = image.data.backdrops
+  for(let i = 0;i<image.length;i++){
+    images.push(image[i].file_path)
+  }
+  result.images = images
     return result;
   } catch (error) {
     console.error('Error fetching movie details:', error);
