@@ -4,9 +4,10 @@ Short description of the project.
 
 ## Features
 
-- Feature 1
-- Feature 2
-- ...
+- Login
+- create Playlist
+- share playlist using link
+- search the movie
 
 ## Installation
 
@@ -30,7 +31,7 @@ Short description of the project.
 
 ## Demo
 
-[Link to Demo Video] (https://drive.google.com/drive/folders/1Kt2y6pelrb_ydr0bbP7_XZHq7djhNlje?usp=sharing).
+ (https://drive.google.com/drive/folders/1Kt2y6pelrb_ydr0bbP7_XZHq7djhNlje?usp=sharing).
 
 ## Contributing
 
