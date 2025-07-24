@@ -1,6 +1,6 @@
 # Project Name
 
-Short description of the project.
+Movie Recommendation
 
 ## Features
 
